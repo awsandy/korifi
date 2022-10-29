@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: my-cluster
   region: eu-west-2
-  version: '1.24'
+  version: '1.23'
   tags:
     karpenter.sh/discovery: cluster-with-karpenter
 iam:
