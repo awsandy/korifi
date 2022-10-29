@@ -16,16 +16,17 @@ createCert() {
   csr_file="$(mktemp)"
   trap "rm -f $csr_file" EXIT
   csr_name="$(echo ${RANDOM} | shasum | head -c 40)"
-
+  echo $csr_name
   openssl req -new -newkey rsa:4096 \
     -keyout "${priv_key_file}" \
     -out "${csr_file}" \
     -nodes \
     -subj "/CN=${username}" 2>/dev/null
-
+  echo "done open ssl"
   # note: we need 'validate=false' here in order to install on k8s clusters with
   #  version <= 1.21, which don't support expirationSeconds. Those environments will
   #  end up with long-lived certificates.
+  echo "kubectl CertificateSigningRequest"
   cat <<EOF | kubectl create --validate=false -f -
 apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest
