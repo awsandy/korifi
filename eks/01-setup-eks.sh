@@ -23,7 +23,7 @@ iam:
 
 
 karpenter:
-  version: '0.18.1'
+  version: '0.15.0'
   createServiceAccount: true # default is false
 
 managedNodeGroups:
