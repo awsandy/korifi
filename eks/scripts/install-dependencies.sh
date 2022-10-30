@@ -28,7 +28,7 @@ echo "**************************"
 echo " Creating 'cf-admin' user"
 echo "**************************"
 
-"$SCRIPT_DIR/create-new-user.sh" cf-admin
+#"$SCRIPT_DIR/create-new-user.sh" cf-admin
 
 echo "*************************"
 echo " Installing Cert Manager"
@@ -54,13 +54,9 @@ echo "********************"
 echo " Installing Contour"
 echo "********************"
 
-# Temporarily resolve an issue with contour running on Apple silicon.
-# This fix can be removed once the latest version of contour uses envoy v1.23.1 or newer
-if command -v kbld &>/dev/null; then
-  kbld --image-map-file "${DEP_DIR}/contour/kbld-image-mapping-to-fix-envoy-v1.23-bug.json" -f "$VENDOR_DIR/contour" | kubectl apply -f -
-else
-  kubectl apply -f "$VENDOR_DIR/contour"
-fi
+
+kubectl apply -f "$VENDOR_DIR/contour"
+
 
 echo "************************************"
 echo " Installing Service Binding Runtime"
@@ -72,18 +68,18 @@ kubectl apply -f "$VENDOR_DIR/service-binding/servicebinding-workloadresourcemap
 
 if ! kubectl get apiservice v1beta1.metrics.k8s.io >/dev/null 2>&1; then
   
-    echo "************************************************"
-    echo " Installing Metrics Server Insecure TLS options"
-    echo "************************************************"
+    #echo "************************************************"
+    #echo " Installing Metrics Server Insecure TLS options"
+    #echo "************************************************"
 
-    trap "rm $DEP_DIR/insecure-metrics-server/components.yaml" EXIT
-    cp "$VENDOR_DIR/metrics-server-local/components.yaml" "$DEP_DIR/insecure-metrics-server/components.yaml"
-    kubectl apply -k "$DEP_DIR/insecure-metrics-server"
+    #trap "rm $DEP_DIR/insecure-metrics-server/components.yaml" EXIT
+    #cp "$VENDOR_DIR/metrics-server-local/components.yaml" "$DEP_DIR/insecure-metrics-server/components.yaml"
+    #kubectl apply -k "$DEP_DIR/insecure-metrics-server"
   
-    #echo "***************************"
-    #echo " Installing Metrics Server"
-    #echo "***************************"
+    echo "***************************"
+    echo " Installing Metrics Server"
+    echo "***************************"
 
-    #kubectl apply -f "$VENDOR_DIR/metrics-server-local"
+    kubectl apply -f "$VENDOR_DIR/metrics-server-local"
   
 fi
