@@ -1,3 +1,8 @@
+
+https://gist.github.com/pauldougan/81df7551d358fda9e7ead2f27a98081b
+
+https://github.com/cloudfoundry/korifi/blob/main/INSTALL.md#post-install-configuration
+
 Install
 
 eksctl
@@ -33,7 +38,8 @@ kubectl apply -f /home/ec2-user/environment/korifi/eks/tests/vendor/service-bind
 
 export ROOT_NAMESPACE="cf"
 export KORIFI_NAMESPACE="korifi-system"
-export ADMIN_USERNAME="andyt530"
+#export ADMIN_USERNAME="andyt530"
+export ADMIN_USERNAME="kubernetes-admin"
 export BASE_DOMAIN="example.com"
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -44,7 +50,7 @@ metadata:
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/enforce: restricted
 EOF
-helm upgrade --install korifi https://github.com/cloudfoundry/korifi/releases/download/v0.4.0/korifi-0.4.0.tgz --namespace="$KORIFI_NAMESPACE"     --set=global.generateIngressCertificates=true     --set=global.rootNamespace="$ROOT_NAMESPACE"     --set=adminUserName="$ADMIN_USERNAME"     --set=api.apiServer.url="api.$BASE_DOMAIN"     --set=global.defaultAppDomainName="apps.$BASE_DOMAIN"     --set=api.packageRepositoryPrefix=europe-west1-docker.pkg.dev/my-project/korifi/packages     --set=kpack-image-builder.builderRepository=europe-west1-docker.pkg.dev/my-project/korifi/kpack-builder     --set=kpack-image-builder.dropletRepositoryPrefix=europe-west1-docker.pkg.dev/my-project/korifi/droplets
+helm upgrade --install korifi https://github.com/cloudfoundry/korifi/releases/download/v0.4.0/korifi-0.4.0.tgz --namespace="$KORIFI_NAMESPACE"     --set=global.generateIngressCertificates=true     --set=global.rootNamespace="$ROOT_NAMESPACE"     --set=adminUserName="$ADMIN_USERNAME"     --set=api.apiServer.url="api.$BASE_DOMAIN"     --set=global.defaultAppDomainName="apps.$BASE_DOMAIN"     --set=api.packageRepositoryPrefix=europe-west1-docker.pkg.dev/my-project/korifi/packages     --set=kpack-image-builder.builderRepository=europe-west1-docker.pkg.dev/my-project/korifi/kpack-builder --set=kpack-image-builder.dropletRepositoryPrefix=europe-west1-docker.pkg.dev/my-project/korifi/droplets
 
 
 
@@ -56,4 +62,35 @@ nslookup api.example.com
 # add  api.example.com x.x.x.x  >> etc/hosts
 
 cf api --skip-ssl-validation https://api.example.com
+
+cf login
+
+cf curl /whoami
+{"name":"kubernetes-admin","kind":"User"}
+
+
+cf create-org demo-org
+cf t -o demo-org
+cf create-space sandbox
+cf t -s sandbox
+cf t
+
+
+
+git clone https://github.com/paketo-buildpacks/samples paketo-buildpacks && cd paketo-buildpacks
+
+cd procfile/procfile-sample
+cf push procfile -m 128M
+cf apps
+cf app procfile
+cf logs static --recent
+
+
+
+helm uninstall korifi -n korifi-system 
+
+
+
+
+
 
