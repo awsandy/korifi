@@ -3,6 +3,11 @@ sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundr
 # ...then, install the cf CLI (which will also download and add the public key to your system)
 sudo yum -y install cf8-cli
 #
+#git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
+#mkdir ~/.linuxbrew/bin
+#ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin
+#eval $(~/.linuxbrew/bin/brew shellenv)
+
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -17,7 +22,7 @@ brew install derailed/k9s/k9s
 sudo ln -s /usr/bin/sha1sum /usr/bin/shasum 
 brew install kustomize
 brew install kubebuilder
-curl -sL https://fluxcd.io/install | sh
+#curl -sL https://fluxcd.io/install | sh
 
 # MAC only
 #brew install gsed
@@ -67,7 +72,8 @@ kubectl get HTTPProxy -A
 
 cf api --skip-ssl-validation https://api.vcap.me
 
-
+cf login
+> cf-admin
 
 ------
 
