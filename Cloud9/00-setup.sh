@@ -19,8 +19,9 @@ brew install kustomize
 brew install kubebuilder
 curl -sL https://fluxcd.io/install | sh
 
-brew install gsed
-sudo ln -s /home/linuxbrew/.linuxbrew/Cellar/gnu-sed/4.8/bin/sed /usr/bin/gsed
+# MAC only
+#brew install gsed
+#sudo ln -s /home/linuxbrew/.linuxbrew/Cellar/gnu-sed/4.8/bin/sed /usr/bin/gsed
 
 #brew tap vmware-tanzu/carvel
 #brew install kbld
