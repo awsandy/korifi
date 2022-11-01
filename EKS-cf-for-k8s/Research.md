@@ -5,8 +5,7 @@ https://github.com/cweibel/example-terraform-eks/blob/main/eks_for_kubecf/cluste
 
 https://documentation.suse.com/suse-cap/2.0/html/cap-guides/cha-cap-depl-eks.html
 
-
-
+------
 
 ## cf-for-k8s (EKS)
 
@@ -20,7 +19,10 @@ https://www.devopsschool.com/blog/getting-started-with-cloud-foundry-for-kuberne
 On AKS
 https://www.youtube.com/watch?v=NFaf8SjGqPc&t=1256s
 
+------
+
 ## Comparision (cf-for-k8s, kubecf, kf)
+
 https://www.engineerbetter.com/blog/cf-for-k8s-kubecf-kf/
 
 * cf-for-k8s   (commercially Tanzu) but superceded by korifi
@@ -28,12 +30,15 @@ https://www.engineerbetter.com/blog/cf-for-k8s-kubecf-kf/
 * kubecf - stopped mid 2021 - good compatibility - IBM use inproduction
 * kf (closed - google project)
 
-
-
-## Replacement ?:
-https://www.devspace.sh/docs/getting-started/initialize-project
-
+-------
 
 ## Migration
 
 https://move2kube.konveyor.io/tutorials/cloud-foundry/
+
+
+## Replacement ?:
+https://www.devspace.sh/docs/getting-started/initialize-project
+and many others
+
+
