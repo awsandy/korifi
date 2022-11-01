@@ -29,8 +29,8 @@ https://www.engineerbetter.com/blog/cf-for-k8s-kubecf-kf/
 
 * cf-for-k8s   (commercially Tanzu) but superceded by korifi
 * korifi - incomplete/immature 0.4.0 release - best on Kind - TBC on EKS (users, ECR, etc)
-* kubecf - stopped mid 2021 - good compatibility - IBM use inproduction
-* kf (closed - google project)
+* kubecf - stopped mid 2021 - good compatibility - IBM use this in production
+* *kf (closed - google project)*
 
 -------
 
