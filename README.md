@@ -1,4 +1,4 @@
-# Cloudfoundry in K8s options
+# CloudFoundry on Kubernetes Options
 
 
 ## kubecf
