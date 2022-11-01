@@ -42,14 +42,18 @@ https://www.engineerbetter.com/blog/cf-for-k8s-kubecf-kf/
 https://move2kube.konveyor.io/tutorials/cloud-foundry/
 
 
-## Replacement ?:
-
-https://www.devspace.sh/docs/getting-started/initialize-project
-and many others
-
-
+----
 
 ### Other Tech stuff:
 
 https://aws.amazon.com/blogs/containers/securing-eks-ingress-contour-lets-encrypt-gitops/
+
+
+----
+
+## Replacement
+
+https://www.devspace.sh/docs/getting-started/initialize-project
+
+and many others
 
